@@ -59,9 +59,6 @@ public class PlayerDeath : MonoBehaviour
     IEnumerator Restart()
     {
         yield return new WaitForSeconds(timeTillRestart);
-        // SetStartPosition();
-
-        // PlayerMovement.Instance.StartEmission(true);
         ReloadScene();
         pointCounter.RestartPoints();
 
