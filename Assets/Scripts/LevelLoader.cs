@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    private int currentSceneIndex;
+    [SerializeField]private int currentSceneIndex;
 
     void Start()
     {
