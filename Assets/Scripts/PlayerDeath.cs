@@ -10,6 +10,7 @@ public class PlayerDeath : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 startPosition;
     private PointCounter pointCounter;
+    private LevelLoader levelLoader;
 
     private bool Dead = false;
 
@@ -20,6 +21,7 @@ public class PlayerDeath : MonoBehaviour
     {
         Instance = this;
         pointCounter = FindObjectOfType<PointCounter>();
+        levelLoader = FindObjectOfType<LevelLoader>();
     }
     #endregion
 
@@ -59,7 +61,7 @@ public class PlayerDeath : MonoBehaviour
     IEnumerator Restart()
     {
         yield return new WaitForSeconds(timeTillRestart);
-        ReloadScene();
+        levelLoader.ReloadCurrentScene();
         pointCounter.RestartPoints();
 
         Dead = false;
@@ -70,12 +72,6 @@ public class PlayerDeath : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         transform.position = startPosition;
         rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-    }
-
-    private void ReloadScene()
-    {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex);
     }
 
     public bool IsDead()
