@@ -11,20 +11,21 @@ public class PointCounter : MonoBehaviour
     [SerializeField] private int points = 0;
     [SerializeField] private int highscore = 0;
 
-    private const string highscorePrefix = "HS ";
+    private const string HIGHSCORE_PREFIX = "HS ";
 
     #region Singleton
+    public static PointCounter Instance;
+
     void Awake()
     {
-        int objectsInScene = FindObjectsOfType<PointCounter>().Length;
-
-        if (objectsInScene > 1)
+        if (Instance == null)
         {
-            Destroy(gameObject);
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
         }
     }
     #endregion
@@ -70,6 +71,6 @@ public class PointCounter : MonoBehaviour
 
     private void SetHighscoreText()
     {
-        highscoreTMP.text = highscorePrefix + highscore.ToString();
+        highscoreTMP.text = HIGHSCORE_PREFIX + highscore.ToString();
     }
 }

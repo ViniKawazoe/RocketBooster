@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeTillRestart: 2
+  gameOverCanvas: {fileID: 0}
 --- !u!1001 &4322426418652901314
 PrefabInstance:
   m_ObjectHideFlags: 0

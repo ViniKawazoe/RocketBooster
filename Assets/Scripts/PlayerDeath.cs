@@ -6,29 +6,25 @@ using UnityEngine.SceneManagement;
 public class PlayerDeath : MonoBehaviour
 {
     [SerializeField] float timeTillRestart = 2f;
+    [SerializeField] Canvas gameOverCanvas;
 
     private Rigidbody2D rb;
-    private Vector2 startPosition;
+
     private PointCounter pointCounter;
-    private LevelLoader levelLoader;
+    private PlayerMovement playerMovement;
 
     private bool Dead = false;
-
-    #region Singleton
-    public static PlayerDeath Instance {get; private set;}
-
-    private void Awake()
-    {
-        Instance = this;
-        pointCounter = FindObjectOfType<PointCounter>();
-        levelLoader = FindObjectOfType<LevelLoader>();
-    }
-    #endregion
 
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-        startPosition = transform.position;
+        playerMovement = gameObject.GetComponent<PlayerMovement>();
+
+        gameOverCanvas.gameObject.SetActive(false);
+
+        pointCounter = PointCounter.Instance;
+
+        pointCounter.RestartPoints();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -44,7 +40,7 @@ public class PlayerDeath : MonoBehaviour
         if (Dead) { return; }
         Dead = true;
 
-        PlayerMovement.Instance.StartEmission(false);
+        playerMovement.StartEmission(false);
 
         Explode();
 
@@ -61,17 +57,10 @@ public class PlayerDeath : MonoBehaviour
     IEnumerator Restart()
     {
         yield return new WaitForSeconds(timeTillRestart);
-        levelLoader.ReloadCurrentScene();
-        pointCounter.RestartPoints();
+        Time.timeScale = 0;
+        gameOverCanvas.gameObject.SetActive(true);
 
         Dead = false;
-    }
-
-    private void SetStartPosition()
-    {
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        transform.position = startPosition;
-        rb.constraints = RigidbodyConstraints2D.FreezePositionX;
     }
 
     public bool IsDead()

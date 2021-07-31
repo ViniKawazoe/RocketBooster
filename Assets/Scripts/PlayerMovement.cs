@@ -14,27 +14,19 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private float gravity;
     private int pointIncrease = 1;
+    
     private PlayerDeath playerDeath;
     private PointCounter pointCounter;
-
-    #region Singleton
-    public static PlayerMovement Instance { get; private set; }
-
-    private void Awake()
-    {
-        Instance = this;
-        pointCounter = FindObjectOfType<PointCounter>();
-    }
-    #endregion
 
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        playerDeath = gameObject.GetComponent<PlayerDeath>();
         gravity = rb.gravityScale;
 
         rb.constraints = RigidbodyConstraints2D.FreezePositionX;
 
-        playerDeath = PlayerDeath.Instance;
+        pointCounter = PointCounter.Instance;
 
         movementEmission = MovementFX.emission;
         thrustEmission = ThrustFX.emission;
@@ -42,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (PlayerDeath.Instance.IsDead()) { return; }
+        if (playerDeath.IsDead()) { return; }
         Rotate();
         PushUp();
     }

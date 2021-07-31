@@ -5,21 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    [SerializeField]private int currentSceneIndex;
-
-    void Start()
-    {
-        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-    }
-
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void LoadNextScene()
+    {
+        ResetTimeScale();
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex + 1);
+    }
+
     public void ReloadCurrentScene()
     {
+        ResetTimeScale();
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    private void ResetTimeScale()
+    {
+        Time.timeScale = 1;
     }
 
     public void QuitGame()
