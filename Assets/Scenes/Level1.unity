@@ -530,10 +530,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PointCounterCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 6789158640228407740, guid: c107d9ef41e23ae418228c1243c47511, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c107d9ef41e23ae418228c1243c47511, type: 3}
 --- !u!1001 &2196609292956228171

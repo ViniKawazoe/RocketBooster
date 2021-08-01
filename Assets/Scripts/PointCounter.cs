@@ -5,6 +5,7 @@ using TMPro;
 
 public class PointCounter : MonoBehaviour
 {
+    [SerializeField] private Animator pointAddAnimationController;
     [SerializeField] private TextMeshProUGUI pointCounterTMP;
     [SerializeField] private TextMeshProUGUI highscoreTMP;
 
@@ -40,6 +41,7 @@ public class PointCounter : MonoBehaviour
     public void AddPoint(int amount)
     {
         points += amount;
+        pointAddAnimationController.SetTrigger("Trigger");
         SetPointText();
     }
 

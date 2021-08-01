@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea0c8dd73698d64daeb19ef3e8d7435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointAddAnimationController: {fileID: 6361613322041510311}
   pointCounterTMP: {fileID: 6789158641616118923}
   highscoreTMP: {fileID: 6789158640410862445}
   points: 0
@@ -263,6 +264,7 @@ GameObject:
   - component: {fileID: 6789158641616118922}
   - component: {fileID: 6789158641616118916}
   - component: {fileID: 6789158641616118923}
+  - component: {fileID: 6361613322041510311}
   m_Layer: 5
   m_Name: PointCounterText
   m_TagString: Untagged
@@ -386,3 +388,22 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!95 &6361613322041510311
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6789158641616118921}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 22c7096ee52d82d4b99f6bccef676afb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
