@@ -8,15 +8,6 @@ public class ObjectPooler : MonoBehaviour
     [SerializeField] private Queue<GameObject> objectPool;
     [SerializeField] private int size = 8;
 
-    #region Singleton
-    public static ObjectPooler Instance { get; private set; }
-
-    private void Awake()
-    {
-        Instance = this;
-    }
-    #endregion
-
     void Start()
     {
         objectPool = new Queue<GameObject>();

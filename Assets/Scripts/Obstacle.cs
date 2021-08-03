@@ -20,7 +20,7 @@ public class Obstacle : MonoBehaviour
 
     void Start()
     {
-        objectPooler = ObjectPooler.Instance;
+        objectPooler = FindObjectOfType<ObjectPooler>();
     }
 
     void OnEnable()

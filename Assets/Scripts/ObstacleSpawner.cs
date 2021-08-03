@@ -10,7 +10,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     void Start()
     {
-        objectPooler = ObjectPooler.Instance;
+        objectPooler = FindObjectOfType<ObjectPooler>();
     }
 
     void FixedUpdate()
