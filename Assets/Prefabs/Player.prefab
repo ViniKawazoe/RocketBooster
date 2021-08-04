@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeTillRestart: 2
   gameOverCanvas: {fileID: 0}
+  explosionFX: {fileID: 7777382827821674327, guid: 135cd97f393a836479ad62b295413597, type: 3}
 --- !u!1001 &4322426418652901314
 PrefabInstance:
   m_ObjectHideFlags: 0

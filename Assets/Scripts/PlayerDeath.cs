@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDeath : MonoBehaviour
 {
-    [SerializeField] float timeTillRestart = 2f;
-    [SerializeField] Canvas gameOverCanvas;
+    [SerializeField] private float timeTillRestart = 2f;
+    [SerializeField] private Canvas gameOverCanvas;
+    [SerializeField] private ParticleSystem explosionFX;
 
     private Rigidbody2D rb;
 
@@ -49,9 +50,10 @@ public class PlayerDeath : MonoBehaviour
 
     private void Explode()
     {
-        rb.constraints = RigidbodyConstraints2D.None;
-        rb.AddForce(Vector2.right * 100);
-        rb.AddTorque(400f);
+        // rb.constraints = RigidbodyConstraints2D.None;
+        // rb.AddForce(Vector2.right * 100);
+        // rb.AddTorque(400f);
+        Instantiate(explosionFX, transform.position, Quaternion.identity);
     }
 
     IEnumerator Restart()
