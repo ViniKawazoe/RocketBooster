@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,26 +15,43 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private float gravity;
     private int pointIncrease = 1;
-    
+
     private PlayerDeath playerDeath;
     private PointCounter pointCounter;
+
+    private string sceneName;
 
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         playerDeath = gameObject.GetComponent<PlayerDeath>();
+        pointCounter = PointCounter.Instance;
+        
+        sceneName = SceneManager.GetActiveScene().name;
+
         gravity = rb.gravityScale;
 
-        rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-
-        pointCounter = PointCounter.Instance;
+        FreezePositions();
 
         movementEmission = MovementFX.emission;
         thrustEmission = ThrustFX.emission;
     }
 
+    private void FreezePositions()
+    {
+        if (sceneName.Equals("MainMenu"))
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+        }
+    }
+
     void FixedUpdate()
     {
+        if (sceneName.Equals("MainMenu")) { return; }
         if (playerDeath.IsDead()) { return; }
         Rotate();
         PushUp();
@@ -61,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (pointCounter == null) { return; }
         if (playerDeath.IsDead()) { return; }
 
         if (other.gameObject.tag == "PointCounter")

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerDeath : MonoBehaviour
 {
@@ -21,11 +20,25 @@ public class PlayerDeath : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
 
-        gameOverCanvas.gameObject.SetActive(false);
+        EnableGameOverCanvas(false);
+        RestartPoints();
+    }
 
+    private void EnableGameOverCanvas(bool enable)
+    {
+        if (gameOverCanvas != null)
+        {
+            gameOverCanvas.gameObject.SetActive(enable);
+        }
+    }
+
+    private void RestartPoints()
+    {
         pointCounter = PointCounter.Instance;
-
-        pointCounter.RestartPoints();
+        if (pointCounter != null)
+        {
+            pointCounter.RestartPoints();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -50,9 +63,6 @@ public class PlayerDeath : MonoBehaviour
 
     private void Explode()
     {
-        // rb.constraints = RigidbodyConstraints2D.None;
-        // rb.AddForce(Vector2.right * 100);
-        // rb.AddTorque(400f);
         Instantiate(explosionFX, transform.position, Quaternion.identity);
     }
 
@@ -60,7 +70,8 @@ public class PlayerDeath : MonoBehaviour
     {
         yield return new WaitForSeconds(timeTillRestart);
         Time.timeScale = 0;
-        gameOverCanvas.gameObject.SetActive(true);
+
+        EnableGameOverCanvas(true);
 
         Dead = false;
     }
