@@ -54,7 +54,7 @@ public class PlayerDeath : MonoBehaviour
         if (Dead) { return; }
         Dead = true;
 
-        playerMovement.StartEmission(false);
+        playerMovement.EnableEmission(false);
 
         Explode();
 

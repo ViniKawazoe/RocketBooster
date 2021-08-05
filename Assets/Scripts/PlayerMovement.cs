@@ -88,9 +88,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void StartEmission(bool start)
+    public void EnableEmission(bool enable)
     {
-        movementEmission.enabled = start;
-        thrustEmission.enabled = start;
+        movementEmission.enabled = enable;
+        thrustEmission.enabled = enable;
     }
 }
