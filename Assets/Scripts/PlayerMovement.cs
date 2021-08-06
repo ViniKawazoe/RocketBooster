@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerDeath playerDeath;
     private PointCounter pointCounter;
+    private AudioManager audioManager;
 
     private string sceneName;
 
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         playerDeath = gameObject.GetComponent<PlayerDeath>();
         pointCounter = PointCounter.Instance;
+        audioManager = FindObjectOfType<AudioManager>();
         
         sceneName = SceneManager.GetActiveScene().name;
 
@@ -70,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(Vector2.up * gravity * upForce * Time.deltaTime, ForceMode2D.Force);
             thrustEmission.enabled = true;
+            audioManager.PlayAudio("ThrustSFX");
         }
         else
         {
