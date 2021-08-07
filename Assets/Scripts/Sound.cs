@@ -9,6 +9,7 @@ public class Sound
     [Range(0, 2f)]
     public float Volume;
     public bool Loop;
+    public bool PlayOnAwake;
 
     [HideInInspector]
     public AudioSource Source;

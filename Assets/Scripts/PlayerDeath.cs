@@ -12,6 +12,7 @@ public class PlayerDeath : MonoBehaviour
 
     private PointCounter pointCounter;
     private PlayerMovement playerMovement;
+    private AudioManager audioManager;
 
     private bool Dead = false;
 
@@ -19,6 +20,7 @@ public class PlayerDeath : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
+        audioManager = AudioManager.Instance;
 
         EnableGameOverCanvas(false);
         RestartPoints();
@@ -64,6 +66,8 @@ public class PlayerDeath : MonoBehaviour
     private void Explode()
     {
         Instantiate(explosionFX, transform.position, Quaternion.identity);
+        audioManager.PlayOneShot("ExplosionSFX");
+        audioManager.Stop("ThrustSFX");
     }
 
     IEnumerator Restart()

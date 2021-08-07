@@ -12,6 +12,8 @@ public class PointCounter : MonoBehaviour
     [SerializeField] private int points = 0;
     [SerializeField] private int highscore = 0;
 
+    private AudioManager audioManager;
+
     private const string HIGHSCORE_PREFIX = "HS ";
 
     #region Singleton
@@ -36,6 +38,8 @@ public class PointCounter : MonoBehaviour
         points = 0;
         SetPointText();
         SetHighscoreText();
+
+        audioManager = AudioManager.Instance;
     }
 
     public void AddPoint(int amount)
@@ -43,6 +47,7 @@ public class PointCounter : MonoBehaviour
         points += amount;
         pointAddAnimationController.SetTrigger("Trigger");
         SetPointText();
+        audioManager.PlayOneShot("AddPointSFX");
     }
 
     public int GetPoints()
