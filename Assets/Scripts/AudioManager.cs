@@ -55,4 +55,25 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
+
+    public void ChangeVolume(bool IsMusic, float volume)
+    {
+        foreach (Sound sound in sounds)
+        {
+            if (sound.IsMusic == IsMusic)
+            {
+                sound.Source.volume = volume;
+            }
+        }
+    }
+
+    public List<Sound> GetSounds()
+    {
+        List<Sound> sounds = new List<Sound>();
+        foreach (Sound sound in sounds)
+        {
+            sounds.Add(sound);
+        }
+        return sounds;
+    }
 }
