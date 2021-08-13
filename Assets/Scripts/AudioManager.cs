@@ -5,6 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private Sound[] sounds;
+    [SerializeField] private float defaultVolume = 0.5f;
 
     public static AudioManager Instance;
 
@@ -14,17 +15,32 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            PlayerPrefsController.SetMusicVolume(defaultVolume);
+            PlayerPrefsController.SetSFXVolume(defaultVolume);
+
             foreach (Sound sound in sounds)
             {
                 sound.Source = gameObject.AddComponent<AudioSource>();
                 sound.Source.clip = sound.Clip;
-                sound.Source.volume = sound.Volume;
+                sound.Source.volume = GetVolume(sound);
                 sound.Source.playOnAwake = sound.PlayOnAwake;
             }
         }
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private float GetVolume(Sound sound)
+    {
+        if (sound.IsMusic)
+        {
+            return PlayerPrefsController.GetMusicVolume();
+        }
+        else
+        {
+            return PlayerPrefsController.GetSFXVolume();
         }
     }
 
@@ -56,7 +72,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void ChangeVolume(bool IsMusic, float volume)
+    public void SetVolume(bool IsMusic, float volume)
     {
         foreach (Sound sound in sounds)
         {
@@ -65,15 +81,5 @@ public class AudioManager : MonoBehaviour
                 sound.Source.volume = volume;
             }
         }
-    }
-
-    public List<Sound> GetSounds()
-    {
-        List<Sound> sounds = new List<Sound>();
-        foreach (Sound sound in sounds)
-        {
-            sounds.Add(sound);
-        }
-        return sounds;
     }
 }

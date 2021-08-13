@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class VolumeController : MonoBehaviour
 {
@@ -11,28 +12,42 @@ public class VolumeController : MonoBehaviour
     private bool isMusic;
     private float sliderVolume = 0.5f;
 
-    void Awake()
+    void Start()
     {
         audioManager = AudioManager.Instance;
         slider = gameObject.GetComponent<Slider>();
         isMusic = gameObject.name.Contains("Music");
+
+        slider.value = GetVolume();
     }
 
-    void Start()
+    private float GetVolume()
     {
-        if (audioManager != null)
+        if (isMusic)
         {
-            List<Sound> sounds = audioManager.GetSounds();
-            List<Sound> validSounds = sounds.Where(x => x.IsMusic == isMusic).ToList();
-            float volume = validSounds.Select(x => x.Source.volume).FirstOrDefault();
-            slider.value = volume;
+            return PlayerPrefsController.GetMusicVolume();
         }
+        else
+        {
+            return PlayerPrefsController.GetSFXVolume();
+        }
+    }
+
+    void Update()
+    {
+        audioManager.SetVolume(isMusic, sliderVolume);
     }
 
     public void OnDrag()
     {
-        if (audioManager == null) { return; }
         sliderVolume = slider.value;
-        audioManager.ChangeVolume(isMusic, sliderVolume);
+        if (isMusic)
+        {
+            PlayerPrefsController.SetMusicVolume(sliderVolume);
+        }
+        else
+        {
+            PlayerPrefsController.SetSFXVolume(sliderVolume);
+        }
     }
 }
