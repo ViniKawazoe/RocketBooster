@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
                 sound.Source.clip = sound.Clip;
                 sound.Source.volume = GetVolume(sound);
                 sound.Source.playOnAwake = sound.PlayOnAwake;
+                sound.Source.loop = sound.Loop;
             }
         }
         else
@@ -53,6 +54,20 @@ public class AudioManager : MonoBehaviour
                 if (!sound.Source.isPlaying)
                 {
                     sound.Source.PlayOneShot(sound.Clip);
+                }
+            }
+        }
+    }
+
+    public void Play(string audioName)
+    {
+        foreach (Sound sound in sounds)
+        {
+            if (sound.Name == audioName)
+            {
+                if (!sound.Source.isPlaying)
+                {
+                    sound.Source.Play();
                 }
             }
         }

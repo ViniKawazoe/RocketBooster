@@ -46,19 +46,26 @@ MonoBehaviour:
   sounds:
   - Name: ThrustSFX
     Clip: {fileID: 8300000, guid: fd35b2db89e1a01468cf2164f9c794f4, type: 3}
-    Volume: 1
     Loop: 1
     PlayOnAwake: 0
+    IsMusic: 0
     Source: {fileID: 0}
   - Name: ExplosionSFX
     Clip: {fileID: 8300000, guid: 3c560280906fc124e8a786c6eae05a89, type: 3}
-    Volume: 1
     Loop: 0
     PlayOnAwake: 0
+    IsMusic: 0
     Source: {fileID: 0}
   - Name: AddPointSFX
     Clip: {fileID: 8300000, guid: 309dd9d1a59e06e499bbcdbe266f5062, type: 3}
-    Volume: 0.5
     Loop: 0
     PlayOnAwake: 0
+    IsMusic: 0
     Source: {fileID: 0}
+  - Name: WindSound
+    Clip: {fileID: 8300000, guid: a18131a6a398c0c46b9caa2fa449a5f8, type: 3}
+    Loop: 1
+    PlayOnAwake: 0
+    IsMusic: 1
+    Source: {fileID: 0}
+  defaultVolume: 0.5
