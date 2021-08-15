@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
         movementEmission = MovementFX.emission;
         thrustEmission = ThrustFX.emission;
+
+        movementEmission.enabled = true;
     }
 
     private void FreezePositions()
