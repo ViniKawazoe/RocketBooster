@@ -20,20 +20,54 @@ public class PlayerMovement : MonoBehaviour
     private PointCounter pointCounter;
     private AudioManager audioManager;
 
-    private string sceneName;
+    // private string sceneName;
+    private bool isMainMenu = true;
 
-    void Start()
+    void OnEnable()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
+        SceneManager.sceneLoaded += OnLevelLoading;
+        FreezePositions();
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnLevelLoading;
+    }
+
+    void OnLevelLoading(Scene scene, LoadSceneMode mode)
+    {
+        // sceneName = scene.name;
+        if (scene.name.Equals("MainMenu"))
+        {
+            isMainMenu = true;
+        }
+        else
+        {
+            isMainMenu = false;
+        }
+        GetData();
+        FreezePositions();
+    }
+
+    private void GetData()
+    {
         playerDeath = gameObject.GetComponent<PlayerDeath>();
         pointCounter = PointCounter.Instance;
         audioManager = AudioManager.Instance;
-        
-        sceneName = SceneManager.GetActiveScene().name;
+    }
 
-        gravity = rb.gravityScale;
+    void Start()
+    {
+        // rb = gameObject.GetComponent<Rigidbody2D>();
+        // playerDeath = gameObject.GetComponent<PlayerDeath>();
+        // pointCounter = PointCounter.Instance;
+        // audioManager = AudioManager.Instance;
 
-        FreezePositions();
+        // sceneName = SceneManager.GetActiveScene().name;
+
+        // gravity = rb.gravityScale;
+
+        // FreezePositions();
 
         movementEmission = MovementFX.emission;
         thrustEmission = ThrustFX.emission;
@@ -43,7 +77,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FreezePositions()
     {
-        if (sceneName.Equals("MainMenu"))
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        gravity = rb.gravityScale;
+        // if (sceneName.Equals("MainMenu"))
+        // if (SceneManager.GetActiveScene().name.Equals("MainMenu"))
+        if (isMainMenu)
         {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
@@ -55,7 +93,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (sceneName.Equals("MainMenu")) { return; }
+        // if (sceneName.Equals("MainMenu")) { return; }
+        if (isMainMenu) { return; }
         if (playerDeath.IsDead()) { return; }
         Rotate();
         PushUp();
@@ -65,7 +104,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 velocity = rb.velocity;
         float ang = Mathf.Atan2(velocity.y, 10) * Mathf.Rad2Deg;
-        transform.root.rotation = Quaternion.Euler(new Vector3(0, 0, ang - 90));
+        // transform.root.rotation = Quaternion.Euler(new Vector3(0, 0, ang - 90));
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, ang - 90));
     }
 
     private void PushUp()
@@ -87,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (pointCounter == null) { return; }
         if (playerDeath.IsDead()) { return; }
-
+        
         if (other.gameObject.tag == "PointCounter")
         {
             pointCounter.AddPoint(pointIncrease);

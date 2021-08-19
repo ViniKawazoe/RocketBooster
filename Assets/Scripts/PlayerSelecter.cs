@@ -69,4 +69,9 @@ public class PlayerSelecter : MonoBehaviour
             SetActivePlayer(selectedIndex);
         }
     }
+
+    public Transform GetSelectedPlayer()
+    {
+        return players[selectedIndex];
+    }
 }
