@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class PlayerSelecter : MonoBehaviour
+public class PlayerSelector : MonoBehaviour
 {
     private List<Transform> players = new List<Transform>();
     private int selectedIndex = 0;
     private int numberOfPlayers;
 
-    public static PlayerSelecter Instance { get; set; }
+    public static PlayerSelector Instance { get; set; }
 
     void Awake()
     {
@@ -18,9 +18,11 @@ public class PlayerSelecter : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
+        else if (Instance != this)
         {
-            Destroy(gameObject);
+            Destroy(Instance.gameObject);
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 

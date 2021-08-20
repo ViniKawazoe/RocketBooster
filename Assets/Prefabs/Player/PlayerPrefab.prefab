@@ -43,8 +43,7 @@ GameObject:
   - component: {fileID: 6171914061952963051}
   - component: {fileID: 6171914061952963050}
   - component: {fileID: 6171914061952963053}
-  - component: {fileID: 6171914061952963052}
-  - component: {fileID: 6171914061952963055}
+  - component: {fileID: 7438698451191700820}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -105,7 +104,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6171914061952963052
+--- !u!114 &7438698451191700820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,24 +113,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6171914061952963054}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22e72e90fc223c14f90b118a19a36f0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 827b52338121e2847a2b463005d068eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   upForce: 1500
-  MovementFX: {fileID: 7081034949344238427}
-  ThrustFX: {fileID: 342801002029965519}
---- !u!114 &6171914061952963055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6171914061952963054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c7703fe83bc804783e5ebe5f229a61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  movementFX: {fileID: 7081034949344238427}
+  thrustFX: {fileID: 342801002029965519}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialRotation: {x: 0, y: 0, z: -90}
   timeTillRestart: 2
   gameOverCanvas: {fileID: 5753367805890198864}
   explosionFX: {fileID: 7777382827821674327, guid: 135cd97f393a836479ad62b295413597, type: 3}

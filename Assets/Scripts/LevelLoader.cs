@@ -5,17 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
+    private const string MAIN_MENU = "MainMenu";
+    private const string OPTIONS_MENU = "OptionsMenu";
+
     public void LoadMainMenu()
     {
         ResetTimeScale();
-        if (PointCounter.Instance != null) { PointCounter.Instance.gameObject.SetActive(true); }
-        SceneManager.LoadScene("MainMenu");
+        SetPointCounterActive(true);
+        SceneManager.LoadScene(MAIN_MENU);
     }
 
     public void LoadNextScene()
     {
         ResetTimeScale();
-        if (PointCounter.Instance != null) { PointCounter.Instance.gameObject.SetActive(true); }
+        SetPointCounterActive(true);
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex + 1);
     }
@@ -23,8 +26,8 @@ public class LevelLoader : MonoBehaviour
     public void LoadOptionsMenu()
     {
         ResetTimeScale();
-        if (PointCounter.Instance != null) { PointCounter.Instance.gameObject.SetActive(false); }
-        SceneManager.LoadScene("OptionsMenu");
+        SetPointCounterActive(false);
+        SceneManager.LoadScene(OPTIONS_MENU);
     }
 
     public void ReloadCurrentScene()
@@ -32,6 +35,11 @@ public class LevelLoader : MonoBehaviour
         ResetTimeScale();
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    private void SetPointCounterActive(bool active)
+    {
+        if (PointCounter.Instance != null) { PointCounter.Instance.gameObject.SetActive(active); }
     }
 
     private void ResetTimeScale()

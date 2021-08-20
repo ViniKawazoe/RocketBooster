@@ -17,12 +17,12 @@ public class Obstacle : MonoBehaviour
     [SerializeField] private float MinYRange = 22f;
 
     private ObjectPooler objectPooler;
-    private PlayerDeath playerDeath;
+    private Player player;
 
     void Start()
     {
         objectPooler = FindObjectOfType<ObjectPooler>();
-        playerDeath = FindObjectOfType<PlayerDeath>();
+        player = FindObjectOfType<Player>();
     }
 
     void OnEnable()
@@ -32,7 +32,7 @@ public class Obstacle : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (playerDeath.IsDead()) { return; }
+        if (player.IsDead()) { return; }
         float newPosition = transform.position.x - (moveSpeed * Time.deltaTime);
         transform.position = new Vector2(newPosition, transform.position.y);
 
