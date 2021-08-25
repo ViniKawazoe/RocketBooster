@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!60 &250179010471606520
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8191359446262736930}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.007659241, y: 0.5072517}
+      - {x: -0.2566132, y: 0.000091940165}
+      - {x: -0.0031253695, y: -0.505198}
+      - {x: -0.001588115, y: -0.505198}
+      - {x: 0.0005723238, y: -0.50519806}
+      - {x: 0.248954, y: 0.0051980913}
 --- !u!1 &9159996328417570676
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,6 +120,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6171914061952963050, guid: 1a0ca7d1b96486543b5834b02398c117, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6171914061952963051, guid: 1a0ca7d1b96486543b5834b02398c117, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -137,8 +172,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPrefab_Diamond
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6171914061952963050, guid: 1a0ca7d1b96486543b5834b02398c117, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1a0ca7d1b96486543b5834b02398c117, type: 3}
+--- !u!1 &8191359446262736930 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6171914061952963054, guid: 1a0ca7d1b96486543b5834b02398c117, type: 3}
+  m_PrefabInstance: {fileID: 2597034541322746316}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8191359446262736935 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6171914061952963051, guid: 1a0ca7d1b96486543b5834b02398c117, type: 3}
