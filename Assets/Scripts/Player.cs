@@ -17,13 +17,18 @@ public class Player : MonoBehaviour
     [SerializeField] private Canvas gameOverCanvas;
     [SerializeField] private ParticleSystem explosionFX;
 
+    [Header("Unlock")]
+    [SerializeField] private int pointsToUnlock;
+
     private int pointIncrease = 1;
 
     private Rigidbody2D rb;
     private float gravity;
+    private Color originalColor;
 
     private bool isMainMenu = true;
     private bool isDead = false;
+    private bool isPlayable = false;
 
     private PointCounter pointCounter;
     private AudioManager audioManager;
@@ -37,6 +42,16 @@ public class Player : MonoBehaviour
     private const string POINT_COUNTER_TAG = "PointCounter";
     private const string GROUND_TAG = "Ground";
     private const string OBSTACLE_TAG = "Obstacle";
+
+    private void Awake()
+    {
+        GetData();
+        EnableGameOverCanvas(false);
+        isPlayable = pointCounter.GetHighscore() >= pointsToUnlock;
+        GetOriginalColor();
+        SetColor(isPlayable);
+        StartEmissions();
+    }
 
     private void OnEnable()
     {
@@ -53,11 +68,9 @@ public class Player : MonoBehaviour
     {
         isMainMenu = IsMainMenu(scene);
         ReturnToInitialPosition();
-        GetData();
-        FreezePositions();
         EnableGameOverCanvas(false);
+        FreezePositions();
         RestartPoints();
-        StartEmissions();
     }
 
     private bool IsMainMenu(Scene scene)
@@ -124,7 +137,14 @@ public class Player : MonoBehaviour
         movementEmission = movementFX.emission;
         thrustEmission = thrustFX.emission;
 
-        movementEmission.enabled = true;
+        if (isPlayable)
+        {
+            movementEmission.enabled = true;
+        }
+        else
+        {
+            movementEmission.enabled = false;
+        }
     }
 
     void FixedUpdate()
@@ -178,7 +198,7 @@ public class Player : MonoBehaviour
     {
         if (isDead) { return; }
         isDead = true;
-        
+
         EnableAllEmissions(false);
         Explode();
         StartCoroutine(Restart());
@@ -211,5 +231,27 @@ public class Player : MonoBehaviour
     public bool IsDead()
     {
         return isDead;
+    }
+
+    public bool IsPlayable()
+    {
+        return isPlayable;
+    }
+
+    private void GetOriginalColor()
+    {
+        originalColor = transform.GetComponentInChildren<SpriteRenderer>().color;
+    }
+
+    public void SetColor(bool isPlayable)
+    {
+        if (isPlayable)
+        {
+            transform.GetComponentInChildren<SpriteRenderer>().color = originalColor;
+        }
+        else
+        {
+            transform.GetComponentInChildren<SpriteRenderer>().color = Color.black;
+        }
     }
 }

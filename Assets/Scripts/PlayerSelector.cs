@@ -76,4 +76,11 @@ public class PlayerSelector : MonoBehaviour
     {
         return players[selectedIndex];
     }
+
+    public bool IsSelectedPlayerUnlocked()
+    {
+        var child = transform.GetChild(selectedIndex);
+        var player = child.GetComponent<Player>();
+        return player.IsPlayable();
+    }
 }

@@ -80,4 +80,9 @@ public class PointCounter : MonoBehaviour
     {
         highscoreTMP.text = HIGHSCORE_PREFIX + highscore.ToString();
     }
+
+    public int GetHighscore()
+    {
+        return highscore;
+    }
 }

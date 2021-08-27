@@ -167,6 +167,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPrefab_Rectangle
       objectReference: {fileID: 0}
+    - target: {fileID: 7438698451191700820, guid: 1a0ca7d1b96486543b5834b02398c117, type: 3}
+      propertyPath: pointsToUnlock
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6171914061952963050, guid: 1a0ca7d1b96486543b5834b02398c117, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1a0ca7d1b96486543b5834b02398c117, type: 3}

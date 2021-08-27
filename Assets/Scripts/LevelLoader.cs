@@ -7,6 +7,7 @@ public class LevelLoader : MonoBehaviour
 {
     private const string MAIN_MENU = "MainMenu";
     private const string OPTIONS_MENU = "OptionsMenu";
+    private const string LEVEL1_NAME = "Level1";
 
     public void LoadMainMenu()
     {
@@ -21,6 +22,15 @@ public class LevelLoader : MonoBehaviour
         SetPointCounterActive(true);
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex + 1);
+    }
+
+    public void StartGame()
+    {
+        if (PlayerSelector.Instance.IsSelectedPlayerUnlocked() == false) { return; }
+
+        ResetTimeScale();
+        SetPointCounterActive(true);
+        SceneManager.LoadScene(LEVEL1_NAME);
     }
 
     public void LoadOptionsMenu()
