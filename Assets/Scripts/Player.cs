@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
 
     [Header("Unlock")]
     [SerializeField] private int pointsToUnlock;
+    [SerializeField] private TextMeshProUGUI pointsToUnlockText;
 
     private int pointIncrease = 1;
 
@@ -42,6 +44,7 @@ public class Player : MonoBehaviour
     private const string POINT_COUNTER_TAG = "PointCounter";
     private const string GROUND_TAG = "Ground";
     private const string OBSTACLE_TAG = "Obstacle";
+    private const string POINTS_TO_UNLOCK = " points to unlock";
 
     private void Awake()
     {
@@ -50,6 +53,7 @@ public class Player : MonoBehaviour
         isPlayable = pointCounter.GetHighscore() >= pointsToUnlock;
         GetOriginalColor();
         SetColor(isPlayable);
+        ActivateUnlockPointsCanvas(isPlayable);
         StartEmissions();
     }
 
@@ -252,6 +256,19 @@ public class Player : MonoBehaviour
         else
         {
             transform.GetComponentInChildren<SpriteRenderer>().color = Color.black;
+        }
+    }
+
+    private void ActivateUnlockPointsCanvas(bool isPlayable)
+    {
+        if (isPlayable)
+        {
+            pointsToUnlockText.gameObject.SetActive(false);
+        }
+        else
+        {
+            pointsToUnlockText.gameObject.SetActive(true);
+            pointsToUnlockText.text = pointsToUnlock + POINTS_TO_UNLOCK;
         }
     }
 }
