@@ -7,7 +7,7 @@ public class Obstacle : MonoBehaviour
     [Header("Obstacle")]
     [SerializeField] private float startXPosition = 20f;
     [SerializeField] private float endXPosition = -20f;
-    [SerializeField] private float YRange = 2f;
+    [SerializeField] private float YRange = 1.5f;
     [SerializeField] private float moveSpeed = 5f;
 
     [Header("Obstacle Distance")]

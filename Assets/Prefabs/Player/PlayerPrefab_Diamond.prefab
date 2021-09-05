@@ -120,6 +120,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2034635407221460413, guid: 1a0ca7d1b96486543b5834b02398c117, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6171914061952963050, guid: 1a0ca7d1b96486543b5834b02398c117, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -174,7 +178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7438698451191700820, guid: 1a0ca7d1b96486543b5834b02398c117, type: 3}
       propertyPath: pointsToUnlock
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6171914061952963050, guid: 1a0ca7d1b96486543b5834b02398c117, type: 3}

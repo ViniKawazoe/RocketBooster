@@ -214,7 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startXPosition: 20
   endXPosition: -20
-  YRange: 2
+  YRange: 1.5
   moveSpeed: 5
   topObstacle: {fileID: 7395571581270607798}
   bottomObstacle: {fileID: 7395571579627831070}
